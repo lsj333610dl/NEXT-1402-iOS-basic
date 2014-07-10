@@ -66,7 +66,22 @@ NSArray* sortFileList(NSArray* arrayFiles){
     return sortedArray;
 }
 
-
+NSArray* findFileByFilenameExtension(NSString* extension, NSString *dirPath){
+    NSArray *files = getAllfilesAtPath(dirPath);
+    
+    NSMutableArray *resultArray = [NSMutableArray new];
+    
+    for (int i=0; i<[files count]; i++) {
+        if ([files[i] rangeOfString:[NSString stringWithFormat:@".%@",extension]].location == NSNotFound) {
+            
+        }
+        
+        else
+            [resultArray addObject:files[i]];
+    }
+    
+    return resultArray;
+}
 
 int main(int argc, const char * argv[])
 {
@@ -85,6 +100,8 @@ int main(int argc, const char * argv[])
         NSArray *files = getAllfilesAtPath(DIRPATH);
         NSLog(@"%@",sortFileList(files));
         
+        //특정 확장자
+        NSLog(@"%@",findFileByFilenameExtension(@"png", DIRPATH));
     }
     
     return 0;
