@@ -27,16 +27,19 @@ NSArray* getAllfilesAtPath(NSString* dirPath){
     
     NSArray *arrayFiles = [fileManager contentsOfDirectoryAtPath:dirPath error:nil];
     
-    NSMutableArray *resultArray = [[NSMutableArray alloc]initWithArray:arrayFiles];
+    NSMutableArray *resultArray = [NSMutableArray new];
     
     for (int i=0; i<[arrayFiles count]; i++) {
         if ([arrayFiles[i] rangeOfString:@"."].location == NSNotFound) {
+            
             
             NSString *deepPath = [NSString stringWithFormat:@"%@/%@",dirPath,arrayFiles[i]];
             
             NSArray *arrayDeepDirFiles = [fileManager contentsOfDirectoryAtPath:deepPath error:nil];
             [resultArray addObjectsFromArray:arrayDeepDirFiles];
         }
+        else
+            [resultArray addObject:arrayFiles[i]];
     }
     
     return resultArray;
@@ -55,6 +58,13 @@ BOOL isExistFilenameAtPath(NSString* filename, NSString* dirPath){
 }
 
 
+NSArray* sortFileList(NSArray* arrayFiles){
+    NSArray *sortedArray = [arrayFiles sortedArrayUsingComparator:^(NSString *filePath1, NSString *filePath2) {
+        return [filePath1 compare:filePath2];
+    }];
+    
+    return sortedArray;
+}
 
 
 
@@ -65,11 +75,16 @@ int main(int argc, const char * argv[])
         NSString *DIRPATH = @"/Users/retina15/Dropbox/wordpress/videostar";
         
         //모든 파일 출력
-//        NSLog(@"%@",getAllfilesAtPath(dirPath));
+        NSLog(@"%@",getAllfilesAtPath(DIRPATH));
         
         //파일 있는지
         NSLog(@"%@", isExistFilenameAtPath(@"logo.png", DIRPATH) ? @"YES" : @"NO");
         NSLog(@"%@", isExistFilenameAtPath(@"notExist.png", DIRPATH) ? @"YES" : @"NO");
+        
+        //정렬
+        NSArray *files = getAllfilesAtPath(DIRPATH);
+        NSLog(@"%@",sortFileList(files));
+        
     }
     
     return 0;
