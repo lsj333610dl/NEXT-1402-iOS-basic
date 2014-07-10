@@ -83,25 +83,53 @@ NSArray* findFileByFilenameExtension(NSString* extension, NSString *dirPath){
     return resultArray;
 }
 
+BOOL isExistFilesAtPath(NSArray *fileNames, NSString* dirPath){
+    
+    int count =0;
+    
+    for (int i=0; i<[fileNames count]; i++) {
+        if(isExistFilenameAtPath(fileNames[i],dirPath)){
+            count++;
+        }
+    }
+    
+    if (count==[fileNames count]) {
+        return YES;
+    }
+    
+    return NO;
+}
+
+
 int main(int argc, const char * argv[])
 {
 
     @autoreleasepool {
         NSString *DIRPATH = @"/Users/retina15/Dropbox/wordpress/videostar";
         
-        //모든 파일 출력
+        NSLog(@"모든 파일 출력");
         NSLog(@"%@",getAllfilesAtPath(DIRPATH));
         
-        //파일 있는지
-        NSLog(@"%@", isExistFilenameAtPath(@"logo.png", DIRPATH) ? @"YES" : @"NO");
-        NSLog(@"%@", isExistFilenameAtPath(@"notExist.png", DIRPATH) ? @"YES" : @"NO");
+        NSLog(@"파일 유무 확인");
+        NSLog(@"%@", isExistFilenameAtPath(@"logo.png", DIRPATH) ? @"YES" : @"NO");     //yes
+        NSLog(@"%@", isExistFilenameAtPath(@"notExist.not", DIRPATH) ? @"YES" : @"NO"); //no
         
-        //정렬
+        NSLog(@"정렬");
         NSArray *files = getAllfilesAtPath(DIRPATH);
         NSLog(@"%@",sortFileList(files));
         
-        //특정 확장자
+        NSLog(@"특정 확장자 검색");
         NSLog(@"%@",findFileByFilenameExtension(@"png", DIRPATH));
+        
+        NSLog(@"여러개 파일 유무 확인");
+        NSArray *filenames1 = @[@"logo.png",@"tag.php"];
+        NSArray *filenames2 = @[@"404.php",@"bg_grey.png",@"style.css"];
+        NSArray *filenames3 = @[@"404.php",@"bg_grey.png",@"oh.no"];
+        
+        NSLog(@"%@",isExistFilesAtPath(filenames1, DIRPATH) ? @"YES" : @"NO"); //yes
+        NSLog(@"%@",isExistFilesAtPath(filenames2, DIRPATH) ? @"YES" : @"NO"); //yes
+        NSLog(@"%@",isExistFilesAtPath(filenames3, DIRPATH) ? @"YES" : @"NO"); //no
+        
     }
     
     return 0;
