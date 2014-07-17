@@ -8,13 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
+#import "JSONserializer.h"
+
+#define TEST1 @"{ \"id\" : 007, \"name\" : \"james\"}"
+
+
 int main(int argc, const char * argv[])
 {
 
     @autoreleasepool {
         
-        // insert code here...
-        NSLog(@"Hello, World!");
+        
+        
+        NSLog(@"%@",[JSONserializer JSONstringToDict:TEST1]);
         
     }
     return 0;
