@@ -33,4 +33,26 @@
     return resultDict;
 }
 
+
++ (NSArray*)JSONArraystringToArray:(NSString*)string{
+    
+    NSMutableArray *resultArray = [NSMutableArray new];
+    
+    NSString *prefix = @"[{"; // string prefix, not needle prefix!
+    NSString *suffix = @"}]"; // string suffix, not needle suffix!
+    
+    
+    NSRange needleRange = NSMakeRange(prefix.length,
+                                      string.length - prefix.length - suffix.length);
+    NSString *needle = [string substringWithRange:needleRange];
+    
+    NSArray* split = [needle componentsSeparatedByString:@"},{"];
+    
+    for (NSString* obj in split) {
+        [resultArray addObject:[self JSONstringToDict:obj]];
+    }
+    
+    return resultArray;
+}
+
 @end

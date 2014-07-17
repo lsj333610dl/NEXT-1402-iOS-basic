@@ -10,4 +10,5 @@
 
 @interface JSONserializer : NSObject
 + (NSDictionary*)JSONstringToDict:(NSString*)string;
++ (NSArray*)JSONArraystringToArray:(NSString*)string;
 @end
