@@ -11,6 +11,7 @@
 		1F2435961977A7B1001DDC49 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2435951977A7B1001DDC49 /* main.m */; };
 		1F24359A1977A7B1001DDC49 /* JSON.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1F2435991977A7B1001DDC49 /* JSON.1 */; };
 		1F2435A21977B309001DDC49 /* JSONserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2435A11977B309001DDC49 /* JSONserializer.m */; };
+		1F2435A51977B842001DDC49 /* JSONStringMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2435A41977B842001DDC49 /* JSONStringMaker.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,6 +35,8 @@
 		1F2435991977A7B1001DDC49 /* JSON.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = JSON.1; sourceTree = "<group>"; };
 		1F2435A01977B309001DDC49 /* JSONserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONserializer.h; sourceTree = "<group>"; };
 		1F2435A11977B309001DDC49 /* JSONserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONserializer.m; sourceTree = "<group>"; };
+		1F2435A31977B842001DDC49 /* JSONStringMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONStringMaker.h; sourceTree = "<group>"; };
+		1F2435A41977B842001DDC49 /* JSONStringMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONStringMaker.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,11 +79,13 @@
 		1F2435941977A7B1001DDC49 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
+				1F2435A01977B309001DDC49 /* JSONserializer.h */,
+				1F2435A11977B309001DDC49 /* JSONserializer.m */,
+				1F2435A31977B842001DDC49 /* JSONStringMaker.h */,
+				1F2435A41977B842001DDC49 /* JSONStringMaker.m */,
 				1F2435951977A7B1001DDC49 /* main.m */,
 				1F2435991977A7B1001DDC49 /* JSON.1 */,
 				1F2435971977A7B1001DDC49 /* Supporting Files */,
-				1F2435A01977B309001DDC49 /* JSONserializer.h */,
-				1F2435A11977B309001DDC49 /* JSONserializer.m */,
 			);
 			path = JSON;
 			sourceTree = "<group>";
@@ -146,6 +151,7 @@
 			files = (
 				1F2435961977A7B1001DDC49 /* main.m in Sources */,
 				1F2435A21977B309001DDC49 /* JSONserializer.m in Sources */,
+				1F2435A51977B842001DDC49 /* JSONStringMaker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
