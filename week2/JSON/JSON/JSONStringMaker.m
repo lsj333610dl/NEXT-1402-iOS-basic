@@ -12,24 +12,36 @@
 
 + (NSString*)JSONMakerWithDict:(NSDictionary*)sourceDict{
     
-    NSMutableString *resultJSON = [NSMutableString new];
+    NSMutableString *resultJSONString = [NSMutableString new];
     
     NSArray *allkeys = [sourceDict allKeys];
     
-    [resultJSON setString:@"{"];
+    [resultJSONString setString:@"{"];
     
     for (NSString* key in allkeys) {
-        [resultJSON appendString:[NSString stringWithFormat:@"%@:%@,",key,[sourceDict valueForKey:key]]];
+        [resultJSONString appendString:[NSString stringWithFormat:@"%@:%@,",key,[sourceDict valueForKey:key]]];
     }
-    [resultJSON deleteCharactersInRange:NSMakeRange([resultJSON length]-1, 1)];
-    [resultJSON appendString:@"}"];
+    [resultJSONString deleteCharactersInRange:NSMakeRange([resultJSONString length]-1, 1)];
+    [resultJSONString appendString:@"}"];
     
-    return resultJSON;
+    return resultJSONString;
 }
 
-+ (NSString*)JSONMakerWithArray:(NSArray*)array{
++ (NSString*)JSONMakerWithArray:(NSArray*)sourceArray{
     
-    return @"";
+    NSMutableString *resultJSONString = [NSMutableString new];
+    
+    [resultJSONString setString:@"["];
+    
+    for (NSDictionary *dict in sourceArray) {
+        [resultJSONString appendString:[self JSONMakerWithDict:dict]];
+        [resultJSONString appendString:@","];
+    }
+    
+    [resultJSONString deleteCharactersInRange:NSMakeRange([resultJSONString length]-1, 1)];
+    [resultJSONString appendString:@"]"];
+    
+    return resultJSONString;
 }
 
 @end

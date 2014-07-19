@@ -12,4 +12,6 @@
 
 + (NSString*)JSONMakerWithDict:(NSDictionary*)sourceDict;
 
++ (NSString*)JSONMakerWithArray:(NSArray*)sourceArray;
+
 @end
