@@ -31,12 +31,9 @@ int main(int argc, const char * argv[])
 {
 
     @autoreleasepool {
-//        NSLog(@"%@",[JSONserializer JSONDictStringToDict:TEST1]);
-        
-//        NSLog(@"%@",[JSONserializer JSONArraystringToArray:TEST2]);
-        
-    
-        NSLog(@"%@",[JSONserializer JSONDictInArrayStringToDict:TEST3]);
+        NSLog(@"1. 간단 Dict : %@",[JSONserializer MyJSONSerializationFrom:TEST1]);
+        NSLog(@"2. Array : %@",[JSONserializer MyJSONSerializationFrom:TEST2]);
+        NSLog(@"3. Dict in Array : %@",[JSONserializer MyJSONSerializationFrom:TEST3]);
     }
     
     return 0;

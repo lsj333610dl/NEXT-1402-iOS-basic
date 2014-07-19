@@ -80,8 +80,18 @@
 
 + (id)MyJSONSerializationFrom:(NSString*)jsonData{
     
+    if ([jsonData rangeOfString:@"[{"].location != NSNotFound) {
+        return [self JSONArraystringToArray:jsonData];
+    }
+    else if ([jsonData rangeOfString:@":["].location != NSNotFound){
+        return [self JSONDictInArrayStringToDict:jsonData];
+    }
+    else
+        return [self JSONDictStringToDict:jsonData];
+    
     return NULL;
 }
+
 
 + (NSString*) subStringFromString:(NSString*)string prefix:(NSString*)prefix suffix:(NSString*)suffix{
     

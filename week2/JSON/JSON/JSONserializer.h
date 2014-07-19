@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface JSONserializer : NSObject
-+ (NSDictionary*)JSONDictStringToDict:(NSString*)string;
-+ (NSArray*)JSONArraystringToArray:(NSString*)string;
-+ (NSArray*)JSONDictInArrayStringToDict:(NSString*)string;
+//+ (NSDictionary*)JSONDictStringToDict:(NSString*)string;
+//+ (NSArray*)JSONArraystringToArray:(NSString*)string;
+//+ (NSArray*)JSONDictInArrayStringToDict:(NSString*)string;
 
 + (id)MyJSONSerializationFrom:(NSString*)jsonData;
 
