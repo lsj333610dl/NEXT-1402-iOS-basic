@@ -10,4 +10,6 @@
 
 @interface JSONStringMaker : NSObject
 
++ (NSString*)JSONMakerWithDict:(NSDictionary*)sourceDict;
+
 @end

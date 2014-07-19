@@ -12,6 +12,7 @@
 @implementation JSONserializer
 
 + (NSDictionary*)JSONDictStringToDict:(NSString*)string{
+    
     NSMutableDictionary *resultDict = [NSMutableDictionary new];
     
     NSString *needle = [self subStringFromString:string prefix:@"{" suffix:@"}"];
@@ -32,13 +33,7 @@
     
     NSMutableArray *resultArray = [NSMutableArray new];
     
-    NSString *prefix = @"[{"; // string prefix, not needle prefix!
-    NSString *suffix = @"}]"; // string suffix, not needle suffix!
-    
-    
-    NSRange needleRange = NSMakeRange(prefix.length,
-                                      string.length - prefix.length - suffix.length);
-    NSString *needle = [string substringWithRange:needleRange];
+    NSString *needle = [self subStringFromString:string prefix:@"[{" suffix:@"}]"];
     
     NSArray* split = [needle componentsSeparatedByString:@"},{"];
     
@@ -53,6 +48,7 @@
 + (NSDictionary*)JSONDictInArrayStringToDict:(NSString*)string{
     
     NSMutableArray *allObj = [NSMutableArray new];
+    
     NSMutableDictionary *resultDict = [NSMutableDictionary new];
     
     NSString *needle = [self subStringFromString:string prefix:@"{" suffix:@"}"];
