@@ -50,6 +50,8 @@
         [boardString appendString:@"\n"];
     }
     NSLog(@"%@",boardString);
+    
+    [boardString release];
 }
 
 - (void)randBoard{
@@ -111,8 +113,6 @@
 #pragma mark - 이동
 - (void)moveLeft{
     
-//    NSLog(@"%@",board[1][1]);
-    
     int count = (int)[board count];
     
     NSArray *allArray = [self getAllobj];
@@ -121,17 +121,46 @@
     int index = (int)[result indexOfObject:[NSNumber numberWithInteger:0]];
 
     int row = index/count;
-    NSLog(@"%d",row);
-    [result exchangeObjectAtIndex:index withObjectAtIndex:index-1];
-
-    NSLog(@"%@",result);
-
+    int col = index%count;
+    
+    if (!col) {
+        return;
+    }
+    
+    NSNumber *temp = board[row][col-1];
+    
+    [result replaceObjectAtIndex:index-1 withObject:board[row][col]];
+    [result replaceObjectAtIndex:index withObject:temp];
+//    [result exchangeObjectAtIndex:index withObjectAtIndex:index-1];
+//    NSLog(@"%@",result);
     [self makeBoardWithArray:result];
+//    [self printBoard];
     
 }
 
 - (void)moveRight{
+    int count = (int)[board count];
     
+    NSArray *allArray = [self getAllobj];
+    NSMutableArray *result = [NSMutableArray arrayWithArray:allArray];
+    
+    int index = (int)[result indexOfObject:[NSNumber numberWithInteger:0]];
+    
+    int row = index/count;
+    int col = index%count;
+    
+//    NSLog(@"%d, %d",row, col);
+    
+    if (col>=count-1) {
+        return;
+    }
+    
+    NSNumber *temp = board[row][col+1];
+    
+    [result replaceObjectAtIndex:index+1 withObject:board[row][col]];
+    [result replaceObjectAtIndex:index withObject:temp];
+    
+    [self makeBoardWithArray:result];
 }
 
 - (void)moveTop{
