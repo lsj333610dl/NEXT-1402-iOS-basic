@@ -20,11 +20,14 @@ int main(int argc, const char * argv[])
         [puzzle randBoard];
         [puzzle printBoard];
         
-        char input;
-        scanf("%c", &input);
-        
-        
-        [puzzle moveLeft];
+        while (1) {
+            
+            char input[2];
+            scanf("%s", input);
+            
+            
+            [puzzle moveLeft];
+        }
         
         
         [puzzle release];

@@ -41,7 +41,15 @@
 }
 
 - (void)printBoard{
-    NSLog(@"%@",board);
+    NSMutableString *boardString = [[NSMutableString alloc]initWithString:@"\n"];
+    int count = (int)[board count];
+    for (int i=0; i<count; i++) {
+        for (int j=0; j<count; j++) {
+            [boardString appendString:[(NSNumber*)board[i][j] stringValue] ];
+        }
+        [boardString appendString:@"\n"];
+    }
+    NSLog(@"%@",boardString);
 }
 
 - (void)randBoard{
@@ -103,15 +111,22 @@
 #pragma mark - 이동
 - (void)moveLeft{
     
+//    NSLog(@"%@",board[1][1]);
+    
+    int count = (int)[board count];
+    
     NSArray *allArray = [self getAllobj];
-    
-    NSMutableArray *allObj = [NSMutableArray arrayWithArray:allArray];
-    
-    int index = (int)[allObj indexOfObject:[NSNumber numberWithInteger:0]];
-    
-    [allObj exchangeObjectAtIndex:index withObjectAtIndex:index-1];
-    
-    NSLog(@"%@",allObj);
+    NSMutableArray *result = [NSMutableArray arrayWithArray:allArray];
+
+    int index = (int)[result indexOfObject:[NSNumber numberWithInteger:0]];
+
+    int row = index/count;
+    NSLog(@"%d",row);
+    [result exchangeObjectAtIndex:index withObjectAtIndex:index-1];
+
+    NSLog(@"%@",result);
+
+    [self makeBoardWithArray:result];
     
 }
 
