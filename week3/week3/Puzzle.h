@@ -10,6 +10,7 @@
 
 @interface Puzzle : NSObject{
     NSMutableArray* board;
+    NSArray* answer;
 }
 
 - (void)makeBoardWithNumber:(NSNumber*)number;
@@ -20,4 +21,6 @@
 - (void)moveRight;
 - (void)moveUp;
 - (void)moveDown;
+
+- (BOOL)isAnswer;
 @end

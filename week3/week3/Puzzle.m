@@ -36,6 +36,7 @@
     [[board lastObject] removeLastObject];
     [[board lastObject] addObject:[NSNumber numberWithInt:0]];
     
+    answer = [board copy];
     
     
 }
@@ -45,7 +46,7 @@
     int count = (int)[board count];
     for (int i=0; i<count; i++) {
         for (int j=0; j<count; j++) {
-            [boardString appendString:[NSString stringWithFormat:@" %@ ",[(NSNumber*)board[i][j] stringValue]]];
+            [boardString appendString:[NSString stringWithFormat:@"%4d",[(NSNumber*)board[i][j] intValue]]];
         }
         [boardString appendString:@"\n\n"];
     }
@@ -95,6 +96,7 @@
         [row release];
     }
     
+    [self printBoard];
 }
 
 - (NSArray*)getAllobj{
@@ -124,6 +126,7 @@
     int col = index%count;
     
     if (!col) {
+        [self makeBoardWithArray:result];
         return;
     }
     
@@ -132,7 +135,6 @@
     [result replaceObjectAtIndex:index-1 withObject:board[row][col]];
     [result replaceObjectAtIndex:index withObject:temp];
     [self makeBoardWithArray:result];
-    [self printBoard];
 }
 
 - (void)moveRight{
@@ -147,6 +149,7 @@
     int col = index%count;
     
     if (col>=count-1) {
+        [self makeBoardWithArray:result];
         return;
     }
     
@@ -156,7 +159,6 @@
     [result replaceObjectAtIndex:index withObject:temp];
     
     [self makeBoardWithArray:result];
-    [self printBoard];
 }
 
 - (void)moveUp{
@@ -172,6 +174,7 @@
     int col = index%count;
     
     if (!row) {
+        [self makeBoardWithArray:result];
         return;
     }
     
@@ -180,7 +183,7 @@
     [result replaceObjectAtIndex:index-count withObject:board[row][col]];
     [result replaceObjectAtIndex:index withObject:temp];
     [self makeBoardWithArray:result];
-    [self printBoard];
+    
 }
 
 - (void)moveDown{
@@ -195,6 +198,7 @@
     int col = index%count;
     
     if (row>=count-1) {
+        [self makeBoardWithArray:result];
         return;
     }
     
@@ -203,7 +207,10 @@
     [result replaceObjectAtIndex:index+count withObject:board[row][col]];
     [result replaceObjectAtIndex:index withObject:temp];
     [self makeBoardWithArray:result];
-    [self printBoard];
+}
+
+- (BOOL)isAnswer{
+    return [board isEqualToArray:answer];
 }
 
 @end
