@@ -15,4 +15,9 @@
 - (void)makeBoardWithNumber:(NSNumber*)number;
 - (void)printBoard;
 - (void)randBoard;
+
+- (void)moveLeft;
+- (void)moveRight;
+- (void)moveTop;
+- (void)moveBottom;
 @end

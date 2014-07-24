@@ -16,9 +16,18 @@ int main(int argc, const char * argv[])
     @autoreleasepool {
         
         Puzzle *puzzle = [Puzzle new];
-        [puzzle makeBoardWithNumber:[NSNumber numberWithInteger:5]];
+        [puzzle makeBoardWithNumber:[NSNumber numberWithInteger:3]];
         [puzzle randBoard];
         [puzzle printBoard];
+        
+        char input;
+        scanf("%c", &input);
+        
+        
+        [puzzle moveLeft];
+        
+        
+        [puzzle release];
     }
     return 0;
 }

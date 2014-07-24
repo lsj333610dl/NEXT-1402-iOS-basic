@@ -30,6 +30,7 @@
         
         [board addObject:row];
         
+        [row release];
     }
 
     [[board lastObject] removeLastObject];
@@ -45,14 +46,7 @@
 
 - (void)randBoard{
     
-    NSMutableArray *allObj = [NSMutableArray new];
-    
-    for (int i=0; i<[board count]; i++) {
-        for (int j=0; j<[board count]; j++) {
-           [allObj addObject:[[board objectAtIndex:i] objectAtIndex:j]];
-        }
-    }
-
+    NSMutableArray *allObj = [NSMutableArray arrayWithArray:[self getAllobj]];
     
     int count = (int)[allObj count];
     for (int i = 0; i < count; ++i) {
@@ -64,7 +58,10 @@
     }
     
     [self makeBoardWithArray:allObj];
+    
 }
+
+
 
 - (void)makeBoardWithArray:(NSArray*)array{
     
@@ -85,8 +82,48 @@
         }
         
         [board addObject:row];
-        
+        [row release];
     }
+    
+}
+
+- (NSArray*)getAllobj{
+    NSMutableArray *result = [[NSMutableArray new] autorelease];
+    
+    for (int i=0; i<[board count]; i++) {
+        for (int j=0; j<[board count]; j++) {
+            [result addObject:[[board objectAtIndex:i] objectAtIndex:j]];
+        }
+    }
+    
+    return result;
+}
+
+
+#pragma mark - 이동
+- (void)moveLeft{
+    
+    NSArray *allArray = [self getAllobj];
+    
+    NSMutableArray *allObj = [NSMutableArray arrayWithArray:allArray];
+    
+    int index = (int)[allObj indexOfObject:[NSNumber numberWithInteger:0]];
+    
+    [allObj exchangeObjectAtIndex:index withObjectAtIndex:index-1];
+    
+    NSLog(@"%@",allObj);
+    
+}
+
+- (void)moveRight{
+    
+}
+
+- (void)moveTop{
+    
+}
+
+- (void)moveBottom{
     
 }
 
