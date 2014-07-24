@@ -17,22 +17,33 @@ int main(int argc, const char * argv[])
         
         Puzzle *puzzle = [Puzzle new];
         [puzzle makeBoardWithNumber:[NSNumber numberWithInteger:3]];
-//        [puzzle randBoard];
-//        [puzzle printBoard];
-        
-        
-        [puzzle moveLeft];
+        [puzzle randBoard];
         [puzzle printBoard];
         
-        [puzzle moveLeft];
-        [puzzle printBoard];
         
-        [puzzle moveRight];
-        [puzzle printBoard];
+//        [puzzle moveLeft];
+//        
+//        [puzzle moveLeft];
+//        
+//        [puzzle moveLeft];
+//        
+//        
+//        
+//        
+//        [puzzle moveRight];
+//        
+//        
+        //        [puzzle moveRight];
+        [puzzle moveUp];
+        [puzzle moveUp];
+        [puzzle moveUp];
+        [puzzle moveUp];
         
-        [puzzle moveRight];
-        [puzzle printBoard];
-        
+        [puzzle moveDown];
+        [puzzle moveDown];
+        [puzzle moveDown];
+        [puzzle moveDown];
+        [puzzle moveDown];
         
         
         [puzzle release];

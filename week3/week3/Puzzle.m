@@ -41,13 +41,13 @@
 }
 
 - (void)printBoard{
-    NSMutableString *boardString = [[NSMutableString alloc]initWithString:@"\n"];
+    NSMutableString *boardString = [[NSMutableString alloc]initWithString:@"\n\n"];
     int count = (int)[board count];
     for (int i=0; i<count; i++) {
         for (int j=0; j<count; j++) {
-            [boardString appendString:[(NSNumber*)board[i][j] stringValue] ];
+            [boardString appendString:[NSString stringWithFormat:@" %@ ",[(NSNumber*)board[i][j] stringValue]]];
         }
-        [boardString appendString:@"\n"];
+        [boardString appendString:@"\n\n"];
     }
     NSLog(@"%@",boardString);
     
@@ -131,11 +131,8 @@
     
     [result replaceObjectAtIndex:index-1 withObject:board[row][col]];
     [result replaceObjectAtIndex:index withObject:temp];
-//    [result exchangeObjectAtIndex:index withObjectAtIndex:index-1];
-//    NSLog(@"%@",result);
     [self makeBoardWithArray:result];
-//    [self printBoard];
-    
+    [self printBoard];
 }
 
 - (void)moveRight{
@@ -149,8 +146,6 @@
     int row = index/count;
     int col = index%count;
     
-//    NSLog(@"%d, %d",row, col);
-    
     if (col>=count-1) {
         return;
     }
@@ -161,14 +156,54 @@
     [result replaceObjectAtIndex:index withObject:temp];
     
     [self makeBoardWithArray:result];
+    [self printBoard];
 }
 
-- (void)moveTop{
+- (void)moveUp{
     
+    int count = (int)[board count];
+    
+    NSArray *allArray = [self getAllobj];
+    NSMutableArray *result = [NSMutableArray arrayWithArray:allArray];
+    
+    int index = (int)[result indexOfObject:[NSNumber numberWithInteger:0]];
+    
+    int row = index/count;
+    int col = index%count;
+    
+    if (!row) {
+        return;
+    }
+    
+    NSNumber *temp = board[row-1][col];
+    
+    [result replaceObjectAtIndex:index-count withObject:board[row][col]];
+    [result replaceObjectAtIndex:index withObject:temp];
+    [self makeBoardWithArray:result];
+    [self printBoard];
 }
 
-- (void)moveBottom{
+- (void)moveDown{
+    int count = (int)[board count];
     
+    NSArray *allArray = [self getAllobj];
+    NSMutableArray *result = [NSMutableArray arrayWithArray:allArray];
+    
+    int index = (int)[result indexOfObject:[NSNumber numberWithInteger:0]];
+    
+    int row = index/count;
+    int col = index%count;
+    
+    if (row>=count-1) {
+        return;
+    }
+    
+    NSNumber *temp = board[row+1][col];
+    
+    [result replaceObjectAtIndex:index+count withObject:board[row][col]];
+    [result replaceObjectAtIndex:index withObject:temp];
+    [self makeBoardWithArray:result];
+    [self printBoard];
 }
 
 @end

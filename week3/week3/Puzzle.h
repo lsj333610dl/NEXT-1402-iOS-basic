@@ -18,6 +18,6 @@
 
 - (void)moveLeft;
 - (void)moveRight;
-- (void)moveTop;
-- (void)moveBottom;
+- (void)moveUp;
+- (void)moveDown;
 @end
