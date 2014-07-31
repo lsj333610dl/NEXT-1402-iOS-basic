@@ -17,8 +17,8 @@ int main(int argc, const char * argv[])
         
         Puzzle *puzzle = [Puzzle new];
         
-        [puzzle makeBoardWithNumber:[NSNumber numberWithInteger:5]];
-        [puzzle randBoard];
+        [puzzle makeBoardWithNumber:[NSNumber numberWithInteger:3]];
+//        [puzzle randBoard];
         
         char input[2];
         char *exit = "x";
@@ -46,7 +46,7 @@ int main(int argc, const char * argv[])
                 NSLog(@"\n없는 커맨드입니다. 다시 입력하세요.");
             
             if ([puzzle isAnswer]) {
-                NSLog(@"\n정답입니다!");
+                NSLog(@"\n*****************정답입니다!");
                 [puzzle release];
                 return 0;
             }
