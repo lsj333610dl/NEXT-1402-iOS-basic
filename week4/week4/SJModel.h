@@ -10,6 +10,10 @@
 
 @interface SJModel : NSObject
 
+@property (retain) NSString *rps;
+
 +(void)randomize;
+
+-(void)randomize;
 
 @end

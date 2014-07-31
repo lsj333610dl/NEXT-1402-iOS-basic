@@ -15,6 +15,28 @@
 
 @implementation SJModel
 
+@synthesize rps;
+
+-(void)randomize{
+    switch (arc4random()%3) {
+        case 가위:
+            self.rps = @"s";
+            break;
+            
+        case 바위:
+            self.rps = @"r";
+            break;
+            
+        case 보:
+            self.rps = @"p";
+            break;
+            
+        default:
+            break;
+    }
+}
+
+
 +(void)randomize{
     
     NSDictionary *notiDict = nil;

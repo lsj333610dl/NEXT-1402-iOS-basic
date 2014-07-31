@@ -7,7 +7,6 @@
 //
 
 #import "ViewController.h"
-#import "SJModel.h"
 
 @interface ViewController ()
             
@@ -22,7 +21,26 @@
     NSNotificationCenter *notiCenter = [NSNotificationCenter defaultCenter];
     [notiCenter addObserver:self selector:@selector(printRPS:) name:@"randRps" object:nil];
     
-    [SJModel randomize];
+    
+    model = [SJModel new];
+    
+    [model addObserver:self forKeyPath:@"rps" options:(NSKeyValueObservingOptionNew |
+                                                       NSKeyValueObservingOptionOld) context:nil];
+    
+    
+    [model randomize];
+}
+
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+    
+    if ([keyPath isEqualToString:@"rps"]) {
+        NSLog(@"%@", [change objectForKey:NSKeyValueChangeNewKey] );
+        
+        NSString *imgName = [NSString stringWithFormat:@"game_big_%@.png",[change objectForKey:NSKeyValueChangeNewKey]];
+        [_imgViewRPS setImage:[UIImage imageNamed:imgName]];
+        
+    }
     
 }
 
@@ -32,12 +50,13 @@
     
     NSString *imgName = [NSString stringWithFormat:@"game_big_%@.png",rps];
     [_imgViewRPS setImage:[UIImage imageNamed:imgName]];
-    
 }
 
 - (IBAction)getRPS:(id)sender {
 
-    [SJModel randomize];
+//    [SJModel randomize];
+    [model randomize];
+    
     
 }
 
@@ -52,7 +71,8 @@
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
     if (event.type == UIEventSubtypeMotionShake) {
         
-        [SJModel randomize];
+//        [SJModel randomize];
+        [model randomize];
     }
 }
 

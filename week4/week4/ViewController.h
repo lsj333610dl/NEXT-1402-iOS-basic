@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SJModel.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController{
+    SJModel *model;
+}
 
 @property (weak, nonatomic) IBOutlet UIImageView *imgViewRPS;
 
