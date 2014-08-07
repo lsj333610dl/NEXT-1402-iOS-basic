@@ -91,9 +91,10 @@
         [self addImageAtIndex:SCROLL+2];
         [self addImageAtIndex:SCROLL+3];
         [self addImageAtIndex:SCROLL+4];
+        [self removeImageAtIndex:SCROLL+5];
     }
     
-    else if(SCROLL>=2 && SCROLL<18){
+    else if(SCROLL>=2 && SCROLL<17){
         [self removeImageAtIndex:SCROLL-2];
         [self removeImageAtIndex:SCROLL-1];
         [self addImageAtIndex:SCROLL];
@@ -101,10 +102,12 @@
         [self addImageAtIndex:SCROLL+2];
         [self addImageAtIndex:SCROLL+3];
         [self addImageAtIndex:SCROLL+4];
+        [self removeImageAtIndex:SCROLL+5];
     }
     
-    else if(SCROLL>=18){
-        [self removeImageAtIndex:17];
+    else if(SCROLL>=17){
+        [self removeImageAtIndex:16];
+        [self addImageAtIndex:17];
         [self addImageAtIndex:18];
         [self addImageAtIndex:19];
         [self addImageAtIndex:20];
