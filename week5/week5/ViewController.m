@@ -36,27 +36,14 @@
     [_scrollView setContentSize:CGSizeMake(_scrollView.frame.size.width, IMG_HEIGHT*22)];
   
     [_scrollView setContentMode:UIViewContentModeScaleAspectFill];
-
     
     [self drawFirstImage];
     
     NSLog(@"%zd",[imageViewArray count]);
     
-//    for (int i=0; i<[imgArray count]; i++) {
-//        
-//        UIImageView *imageView = [[UIImageView alloc]initWithImage:[imgArray objectAtIndex:i]];
-//        
-//        [imageView setFrame:CGRectMake(0, IMG_HEIGHT*i, IMG_WIDTH, IMG_HEIGHT)];
-//        
-//        [imageViewArray addObject:imageView];
-//        
-//        [_scrollView addSubview:[imageViewArray objectAtIndex:i]];
-//        
-//    }
-    
-    
-    
 }
+
+
 
 - (void)drawFirstImage{
     [self addImageAtIndex:0];
@@ -65,9 +52,7 @@
     [self addImageAtIndex:3];
 }
 
-- (void)drawLastImage{
-    
-}
+
 
 
 
@@ -94,14 +79,9 @@
 
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-//    NSLog(@"%d",(int)scrollView.contentOffset.y/IMG_HEIGHT);
 
     if (SCROLL<=0) {
-        [self addImageAtIndex:0];
-        [self addImageAtIndex:1];
-        [self addImageAtIndex:2];
-        [self addImageAtIndex:3];
-        [self addImageAtIndex:4];
+        [self drawFirstImage];
     }
     
     else if (SCROLL==1){
@@ -130,31 +110,6 @@
         [self addImageAtIndex:20];
         [self addImageAtIndex:21];
     }
-    
-    
-//    [imgArray removeAllObjects];
-//    [imageViewArray removeAllObjects];
-    
-//    [imageViewArray ]
-    
-//    [[imageViewArray objectAtIndex:(int)scrollView.contentOffset.y/IMG_HEIGHT] setImage:nil];
-    
-//    switch ((int)scrollView.contentOffset.y/IMG_HEIGHT) {
-//        case 0:
-//            break;
-//            
-//        case 3:
-//            
-//            break;
-//            
-//        case 19:
-//            
-//            break;
-//            
-//        default:
-//            break;
-//    }
-    
     
 }
 
