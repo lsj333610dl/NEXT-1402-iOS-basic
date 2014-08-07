@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "AppDelegate.h"
 
 @interface ViewController ()
             
@@ -22,13 +23,14 @@
     [notiCenter addObserver:self selector:@selector(printRPS:) name:@"randRps" object:nil];
     
     
-    model = [SJModel new];
+    AppDelegate *delegate = [[UIApplication sharedApplication]delegate];
+    model = delegate.model;
     
     [model addObserver:self forKeyPath:@"rps" options:(NSKeyValueObservingOptionNew |
                                                        NSKeyValueObservingOptionOld) context:nil];
     
     
-    [model randomize];
+//    [model randomize];
 }
 
 
