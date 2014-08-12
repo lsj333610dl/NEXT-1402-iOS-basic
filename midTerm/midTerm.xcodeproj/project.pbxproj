@@ -37,6 +37,8 @@
 		1F9F7AC61999DBE5009C51AA /* 02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1F9F7AB01999DBE5009C51AA /* 02.jpg */; };
 		1F9F7AC71999DBE5009C51AA /* 01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1F9F7AB11999DBE5009C51AA /* 01.jpg */; };
 		1F9F7ACE1999EA93009C51AA /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9F7ACD1999EA93009C51AA /* DetailViewController.m */; };
+		1FBA72C51999FBBA0014FF56 /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FBA72C31999FBBA0014FF56 /* CustomTableViewCell.m */; };
+		1FBA72C61999FBBA0014FF56 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FBA72C41999FBBA0014FF56 /* CustomTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +90,9 @@
 		1F9F7AB11999DBE5009C51AA /* 01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 01.jpg; sourceTree = "<group>"; };
 		1F9F7ACC1999EA93009C51AA /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailViewController.h; path = ../DetailViewController.h; sourceTree = "<group>"; };
 		1F9F7ACD1999EA93009C51AA /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailViewController.m; path = ../DetailViewController.m; sourceTree = "<group>"; };
+		1FBA72C21999FBBA0014FF56 /* CustomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCell.h; sourceTree = "<group>"; };
+		1FBA72C31999FBBA0014FF56 /* CustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCell.m; sourceTree = "<group>"; };
+		1FBA72C41999FBBA0014FF56 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +116,9 @@
 		1F9F7A6A1999DA29009C51AA = {
 			isa = PBXGroup;
 			children = (
+				1FBA72C21999FBBA0014FF56 /* CustomTableViewCell.h */,
+				1FBA72C31999FBBA0014FF56 /* CustomTableViewCell.m */,
+				1FBA72C41999FBBA0014FF56 /* CustomTableViewCell.xib */,
 				1F9F7AC81999DBEA009C51AA /* Image */,
 				1F9F7A751999DA29009C51AA /* midTerm */,
 				1F9F7A8C1999DA29009C51AA /* midTermTests */,
@@ -298,6 +306,7 @@
 				1F9F7ABD1999DBE5009C51AA /* 10.jpg in Resources */,
 				1F9F7AB81999DBE5009C51AA /* 18.jpg in Resources */,
 				1F9F7AB71999DBE5009C51AA /* 17.jpg in Resources */,
+				1FBA72C61999FBBA0014FF56 /* CustomTableViewCell.xib in Resources */,
 				1F9F7AB51999DBE5009C51AA /* 21.jpg in Resources */,
 				1F9F7AC31999DBE5009C51AA /* 06.jpg in Resources */,
 				1F9F7AB31999DBE5009C51AA /* 19.jpg in Resources */,
@@ -323,6 +332,7 @@
 			files = (
 				1F9F7ACE1999EA93009C51AA /* DetailViewController.m in Sources */,
 				1F9F7A7F1999DA29009C51AA /* ViewController.m in Sources */,
+				1FBA72C51999FBBA0014FF56 /* CustomTableViewCell.m in Sources */,
 				1F9F7A7C1999DA29009C51AA /* AppDelegate.m in Sources */,
 				1F9F7A791999DA29009C51AA /* main.m in Sources */,
 				1F9F7A9B1999DA44009C51AA /* Model.m in Sources */,

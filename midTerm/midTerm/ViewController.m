@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "CustomTableViewCell.h"
 
 @interface ViewController ()
 
@@ -89,12 +90,24 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"CustomCell";
     
-    UITableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    CustomTableViewCell *cell =
+    [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (!cell) {
+        [tableView registerNib:[UINib nibWithNibName:@"CustomTableViewCell" bundle:nil] forCellReuseIdentifier:CellIdentifier];
+        
+        cell =
+        [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    }
     
-    cell.textLabel.text = [[dataArray objectAtIndex:indexPath.row] objectForKey:@"title"];
-    cell.detailTextLabel.text = [[dataArray objectAtIndex:indexPath.row] objectForKey:@"date"];
+    cell.titleLabel.text = [[dataArray objectAtIndex:indexPath.row] objectForKey:@"title"];
+    cell.backImageView.image = [UIImage imageNamed:[[dataArray objectAtIndex:indexPath.row] objectForKey:@"image"]];
+    
+//    UITableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+//    cell.textLabel.text = [[dataArray objectAtIndex:indexPath.row] objectForKey:@"title"];
+//    cell.detailTextLabel.text = [[dataArray objectAtIndex:indexPath.row] objectForKey:@"date"];
     
     return cell;
 }
