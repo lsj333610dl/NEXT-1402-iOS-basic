@@ -28,11 +28,11 @@
 {
     [super viewDidLoad];
     
-    UIImage *image = [UIImage imageNamed:[[[_model dataArray] objectAtIndex:_rowIndex] objectForKey:@"image"]];
+    UIImage *image = [UIImage imageNamed:[[_dataArray objectAtIndex:_rowIndex] objectForKey:@"image"]];
     [_imageView setImage:image];
     
-    [_titleLabel setText:[[[_model dataArray] objectAtIndex:_rowIndex] objectForKey:@"title"]];
-    [_dateLabel setText:[[[_model dataArray] objectAtIndex:_rowIndex] objectForKey:@"date"]];
+    [_titleLabel setText:[[_dataArray objectAtIndex:_rowIndex] objectForKey:@"title"]];
+    [_dateLabel setText:[[_dataArray objectAtIndex:_rowIndex] objectForKey:@"date"]];
 }
 
 

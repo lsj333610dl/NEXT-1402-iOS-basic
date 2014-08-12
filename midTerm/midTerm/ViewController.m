@@ -121,7 +121,7 @@
     DetailViewController *detailVC = [MainStoryboard instantiateViewControllerWithIdentifier:@"detailViewController"];
 
     [detailVC setRowIndex:indexPath.row];
-    [detailVC setModel:model];
+    [detailVC setDataArray:dataArray];
     
     [[self navigationController] pushViewController:detailVC animated:YES];
     

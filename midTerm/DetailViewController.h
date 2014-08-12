@@ -7,13 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Model.h"
 
 @interface DetailViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) IBOutlet UILabel *dateLabel;
 @property (nonatomic) NSUInteger rowIndex;
-@property (weak, nonatomic) Model *model;
+@property (weak, nonatomic) NSMutableArray *dataArray;
 
 @end
