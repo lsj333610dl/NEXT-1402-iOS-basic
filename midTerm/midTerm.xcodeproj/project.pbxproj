@@ -90,9 +90,9 @@
 		1F9F7AB11999DBE5009C51AA /* 01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 01.jpg; sourceTree = "<group>"; };
 		1F9F7ACC1999EA93009C51AA /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailViewController.h; path = ../DetailViewController.h; sourceTree = "<group>"; };
 		1F9F7ACD1999EA93009C51AA /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailViewController.m; path = ../DetailViewController.m; sourceTree = "<group>"; };
-		1FBA72C21999FBBA0014FF56 /* CustomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCell.h; sourceTree = "<group>"; };
-		1FBA72C31999FBBA0014FF56 /* CustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCell.m; sourceTree = "<group>"; };
-		1FBA72C41999FBBA0014FF56 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
+		1FBA72C21999FBBA0014FF56 /* CustomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomTableViewCell.h; path = ../CustomTableViewCell.h; sourceTree = "<group>"; };
+		1FBA72C31999FBBA0014FF56 /* CustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomTableViewCell.m; path = ../CustomTableViewCell.m; sourceTree = "<group>"; };
+		1FBA72C41999FBBA0014FF56 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomTableViewCell.xib; path = ../CustomTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,9 +116,6 @@
 		1F9F7A6A1999DA29009C51AA = {
 			isa = PBXGroup;
 			children = (
-				1FBA72C21999FBBA0014FF56 /* CustomTableViewCell.h */,
-				1FBA72C31999FBBA0014FF56 /* CustomTableViewCell.m */,
-				1FBA72C41999FBBA0014FF56 /* CustomTableViewCell.xib */,
 				1F9F7AC81999DBEA009C51AA /* Image */,
 				1F9F7A751999DA29009C51AA /* midTerm */,
 				1F9F7A8C1999DA29009C51AA /* midTermTests */,
@@ -138,6 +135,9 @@
 		1F9F7A751999DA29009C51AA /* midTerm */ = {
 			isa = PBXGroup;
 			children = (
+				1FBA72C21999FBBA0014FF56 /* CustomTableViewCell.h */,
+				1FBA72C31999FBBA0014FF56 /* CustomTableViewCell.m */,
+				1FBA72C41999FBBA0014FF56 /* CustomTableViewCell.xib */,
 				1F9F7A991999DA44009C51AA /* Model.h */,
 				1F9F7A9A1999DA44009C51AA /* Model.m */,
 				1F9F7ACC1999EA93009C51AA /* DetailViewController.h */,
