@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SJPieGraphView.h"
 
 @interface SJPieGraphViewController : UIViewController
+@property (strong, nonatomic) IBOutlet SJPieGraphView *pieGraphView;
 
 @end

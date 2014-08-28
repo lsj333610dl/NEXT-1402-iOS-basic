@@ -7,8 +7,6 @@
 //
 
 #import "SJPieGraphViewController.h"
-#import "SJPieGraphView.h"
-
 @interface SJPieGraphViewController ()
 
 @end
@@ -27,11 +25,8 @@
     
     
     //barGraph초기화.
-    SJPieGraphView *pieGraphView = [SJPieGraphView new];
-    [pieGraphView initWithArray:jsonObject];
-    [pieGraphView setBackgroundColor:[UIColor whiteColor]];
     
-    [self.view addSubview:pieGraphView];
+    [_pieGraphView initWithArray:jsonObject];
 }
 
 - (void)didReceiveMemoryWarning {

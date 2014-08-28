@@ -43,6 +43,9 @@
                         <color key="backgroundColor" red="0.94901960780000005" green="0.90588235289999997" blue="0.85490196080000003" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Pie" id="hbd-O4-rAu"/>
+                    <connections>
+                        <outlet property="pieGraphView" destination="owu-hB-fSu" id="dNz-Dk-Ugg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ply-KC-o63" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -55,6 +58,13 @@
                     <view key="view" contentMode="scaleToFill" id="Ih6-49-cjL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="DbS-bK-5bA" customClass="SJBarGraphView">
+                                <rect key="frame" x="60" y="184" width="200" height="200"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" red="0.17254901959999999" green="0.24313725489999999" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Bar" id="Fmu-ov-68d"/>
