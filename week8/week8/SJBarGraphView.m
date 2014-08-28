@@ -26,7 +26,7 @@ NSArray *datas;
     }
     
     [self setClipsToBounds:YES];
-//    maxValue *= 1.1;
+    maxValue *= 1.1;
     
 //    [self setBackgroundColor:[UIColor whiteColor]];
     
@@ -46,7 +46,7 @@ NSArray *datas;
         CGPoint startPoint = CGPointMake((60+(float)(rect.size.width-60)*(10.0*i/maxValue)), 0);
         [path moveToPoint:startPoint];
         
-        CGPoint nextPoint = CGPointMake((60+(float)(rect.size.width-60)*(10.0*i/maxValue)), rect.size.height-30);
+        CGPoint nextPoint = CGPointMake((60+(float)(rect.size.width-60)*(10.0*i/maxValue)), rect.size.height-20);
         [path addLineToPoint:nextPoint];
         [path setLineWidth:1.0];
         
@@ -54,7 +54,7 @@ NSArray *datas;
         [path stroke];
         
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake((30+(float)(rect.size.width-60)*(10.0*i/maxValue)),
-                                                                 rect.size.height-30, 60, 30)];
+                                                                 rect.size.height-20, 60, 20)];
         [label setText:[NSString stringWithFormat:@"%d",10*i]];
         [label setFont:[UIFont systemFontOfSize:10]];
         [label setTextAlignment:NSTextAlignmentCenter];
