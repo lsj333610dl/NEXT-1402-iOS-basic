@@ -34,12 +34,35 @@ NSArray *datas;
 
 
 - (void)drawRect:(CGRect)rect {
+    //가이드라인
     
-    CGContextRef context = UIGraphicsGetCurrentContext();
-
-    UIBezierPath *path = [UIBezierPath bezierPath];
+    for (int i=0; i<maxValue/10+1; i++) {
+        
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        
+        UIBezierPath *path = [UIBezierPath bezierPath];
+        
+        
+        CGPoint startPoint = CGPointMake((60+(float)(rect.size.width-60)*(10.0*i/maxValue)), 0);
+        [path moveToPoint:startPoint];
+        
+        CGPoint nextPoint = CGPointMake((60+(float)(rect.size.width-60)*(10.0*i/maxValue)), rect.size.height);
+        [path addLineToPoint:nextPoint];
+        [path setLineWidth:1.0];
+        
+        CGContextSetRGBStrokeColor(context,200/255.0,200/255.0,200/255.0,1.0);
+        [path stroke];
+    }
     
+    
+    //그래프
     for (int i=0 ; i<[datas count] ; i++) {
+        
+        
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        
+        UIBezierPath *path = [UIBezierPath bezierPath];
+        
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 50*i, 50, 40)];
         [label setFont:[UIFont systemFontOfSize:11]];
         [label setMinimumScaleFactor:0.5f];
@@ -55,11 +78,12 @@ NSArray *datas;
         [path addLineToPoint:nextPoint];
         [path setLineWidth:20.0];
         
+        CGContextSetRGBStrokeColor(context,231/255.0,76/255.0,60/255.0,1.0);
+        CGContextSetShadow(context, CGSizeMake(2, 2), 4.0f);
+        [path stroke];
+        
     }
     
-    CGContextSetRGBStrokeColor(context,231/255.0,76/255.0,60/255.0,1.0);
-    CGContextSetShadow(context, CGSizeMake(2, 2), 4.0f);
-    [path stroke];
 
 }
 
