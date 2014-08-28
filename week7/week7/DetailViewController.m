@@ -116,7 +116,16 @@
             
             
             
-            
+            uint8_t *readBytes = (uint8_t *)[_data mutableBytes];
+            readBytes += byteIndex; // instance variable to move pointer
+            int data_len = [_data length];
+            unsigned int len = ((data_len - byteIndex >= 1024) ?
+                                1024 : (data_len-byteIndex));
+            uint8_t buf[len];
+            (void)memcpy(buf, readBytes, len);
+            len = [stream write:(const uint8_t *)buf maxLength:len];
+            byteIndex += len;
+            break;
             
             
 //            buf[len] = '\0';
@@ -144,7 +153,18 @@
     }
 }
 
-
+- (void)sendACK{
+    uint8_t *readBytes = (uint8_t *)[_data mutableBytes];
+    readBytes += byteIndex; // instance variable to move pointer
+    int data_len = [_data length];
+    unsigned int len = ((data_len - byteIndex >= 1024) ?
+                        1024 : (data_len-byteIndex));
+    uint8_t buf[len];
+    (void)memcpy(buf, readBytes, len);
+    len = [stream write:(const uint8_t *)buf maxLength:len];
+    byteIndex += len;
+    break;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
