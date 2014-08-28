@@ -25,6 +25,7 @@ NSArray *datas;
         }
     }
     
+    [self setClipsToBounds:YES];
 //    maxValue *= 1.1;
     
 //    [self setBackgroundColor:[UIColor whiteColor]];
@@ -39,17 +40,20 @@ NSArray *datas;
     UIBezierPath *path = [UIBezierPath bezierPath];
     
     for (int i=0 ; i<[datas count] ; i++) {
-        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 50*i+20, 90, 50)];
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 50*i, 50, 40)];
+        [label setFont:[UIFont systemFontOfSize:11]];
+        [label setMinimumScaleFactor:0.5f];
+        [label adjustsFontSizeToFitWidth];
         [label setTextAlignment:NSTextAlignmentRight];
         [label setText:[datas[i] objectForKey:@"title"]];
         [self addSubview:label];
         
-        CGPoint startPoint = CGPointMake(100, 50*i+50);
+        CGPoint startPoint = CGPointMake(60, 50*i+20);
         [path moveToPoint:startPoint];
         
-        CGPoint nextPoint = CGPointMake(100+220*([[datas[i] objectForKey:@"value"]floatValue]/maxValue), 50*i+50);
+        CGPoint nextPoint = CGPointMake(60+(rect.size.width-60)*([[datas[i] objectForKey:@"value"]floatValue]/maxValue), 50*i+20);
         [path addLineToPoint:nextPoint];
-        [path setLineWidth:30.0];
+        [path setLineWidth:20.0];
         
     }
     

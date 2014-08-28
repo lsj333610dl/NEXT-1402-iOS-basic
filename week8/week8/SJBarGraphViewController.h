@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SJBarGraphView.h"
 
 @interface SJBarGraphViewController : UIViewController
 
+@property (strong, nonatomic) IBOutlet SJBarGraphView *barGraphView;
 
 @end
