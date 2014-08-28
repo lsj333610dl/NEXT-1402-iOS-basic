@@ -34,8 +34,8 @@ NSArray *datas;
 
 
 - (void)drawRect:(CGRect)rect {
-    //가이드라인
     
+    //가이드라인
     for (int i=0; i<maxValue/10+1; i++) {
         
         CGContextRef context = UIGraphicsGetCurrentContext();
@@ -46,12 +46,19 @@ NSArray *datas;
         CGPoint startPoint = CGPointMake((60+(float)(rect.size.width-60)*(10.0*i/maxValue)), 0);
         [path moveToPoint:startPoint];
         
-        CGPoint nextPoint = CGPointMake((60+(float)(rect.size.width-60)*(10.0*i/maxValue)), rect.size.height);
+        CGPoint nextPoint = CGPointMake((60+(float)(rect.size.width-60)*(10.0*i/maxValue)), rect.size.height-30);
         [path addLineToPoint:nextPoint];
         [path setLineWidth:1.0];
         
         CGContextSetRGBStrokeColor(context,200/255.0,200/255.0,200/255.0,1.0);
         [path stroke];
+        
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake((30+(float)(rect.size.width-60)*(10.0*i/maxValue)),
+                                                                 rect.size.height-30, 60, 30)];
+        [label setText:[NSString stringWithFormat:@"%d",10*i]];
+        [label setFont:[UIFont systemFontOfSize:10]];
+        [label setTextAlignment:NSTextAlignmentCenter];
+        [self addSubview:label];
     }
     
     
@@ -63,10 +70,8 @@ NSArray *datas;
         
         UIBezierPath *path = [UIBezierPath bezierPath];
         
-        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 50*i, 50, 40)];
-        [label setFont:[UIFont systemFontOfSize:11]];
-        [label setMinimumScaleFactor:0.5f];
-        [label adjustsFontSizeToFitWidth];
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 50*i, 55, 40)];
+        [label setFont:[UIFont systemFontOfSize:10]];
         [label setTextAlignment:NSTextAlignmentRight];
         [label setText:[datas[i] objectForKey:@"title"]];
         [self addSubview:label];
