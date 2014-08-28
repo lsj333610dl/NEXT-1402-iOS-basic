@@ -58,6 +58,7 @@ NSArray *datas;
     }
     
     CGContextSetRGBStrokeColor(context,231/255.0,76/255.0,60/255.0,1.0);
+    CGContextSetShadow(context, CGSizeMake(2, 2), 4.0f);
     [path stroke];
 
 }
