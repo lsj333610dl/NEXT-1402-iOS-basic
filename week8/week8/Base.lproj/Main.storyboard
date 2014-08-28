@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.8" systemVersion="14A329f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Ina-BK-Q3H">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
     </dependencies>
     <scenes>
-        <!--뷰-->
+        <!--스크롤뷰-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
@@ -12,23 +13,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" id="9pn-wJ-LZe" customClass="SJView">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" id="WUW-kP-hSq">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
+                                <subviews>
+                                    <view contentMode="scaleToFill" id="DId-cm-7YT" customClass="SJPieGraphView">
+                                        <rect key="frame" x="320" y="0.0" width="320" height="518"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" id="blY-Ix-if7" customClass="SJBarGraphView">
+                                        <rect key="frame" x="0.0" y="60" width="320" height="397"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="뷰" id="c1i-Hw-gNX"/>
+                    <tabBarItem key="tabBarItem" title="스크롤뷰" id="c1i-Hw-gNX"/>
+                    <connections>
+                        <outlet property="barView" destination="blY-Ix-if7" id="mon-Jy-Nxa"/>
+                        <outlet property="pieView" destination="DId-cm-7YT" id="yPn-Xb-lrN"/>
+                        <outlet property="scrollView" destination="WUW-kP-hSq" id="dIw-Ch-McQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="453" y="53"/>
+            <point key="canvasLocation" x="453" y="64"/>
         </scene>
         <!--Pie-->
         <scene sceneID="Yr7-e7-mFj">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ply-KC-o63" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="vNI-7m-1Zv" customClass="SJPieGraphViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pms-jk-9dN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -47,13 +65,13 @@
                         <outlet property="pieGraphView" destination="owu-hB-fSu" id="dNz-Dk-Ugg"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ply-KC-o63" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="453" y="1345"/>
         </scene>
         <!--Bar-->
         <scene sceneID="TLc-eq-JLp">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mcB-7r-e1j" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="9Ng-r6-uaQ" customClass="SJBarGraphViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ih6-49-cjL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -79,7 +97,6 @@
                         <outlet property="scrollView" destination="17Z-3F-Kn4" id="MAi-ep-kMX"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mcB-7r-e1j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="453" y="715"/>
         </scene>
@@ -94,9 +111,9 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="viewControllers" id="h4B-p1-Uf2"/>
                         <segue destination="9Ng-r6-uaQ" kind="relationship" relationship="viewControllers" id="M6W-6L-UBi"/>
                         <segue destination="vNI-7m-1Zv" kind="relationship" relationship="viewControllers" id="8o1-7F-Kjy"/>
-                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="viewControllers" id="h4B-p1-Uf2"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vu6-PM-BtA" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SJBarGraphView : UIView
+@interface SJBarGraphView : UIView{
+    
+    NSUInteger maxValue;
+    NSArray *datas;
+}
 
 - (void)initWithArray:(NSArray*)array;
 

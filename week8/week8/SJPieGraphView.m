@@ -11,12 +11,14 @@
 
 #define radian(degree) degree*M_PI/180
 
-NSArray *datas;
-NSMutableArray *degrees;
-double total;
 
 @implementation SJPieGraphView
 
+- (void)awakeFromNib{
+    datas = nil;
+    degrees = nil;
+    total = 0;
+}
 
 - (void)initWithArray:(NSArray*)array{
     datas = array;

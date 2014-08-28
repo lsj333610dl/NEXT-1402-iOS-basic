@@ -8,7 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SJPieGraphView : UIView
+@interface SJPieGraphView : UIView{
+    
+    NSArray *datas;
+    NSMutableArray *degrees;
+    double total;
+}
 
 - (void)initWithArray:(NSArray*)array;
 

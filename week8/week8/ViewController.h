@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SJBarGraphView.h"
+#import "SJPieGraphView.h"
 
 @interface ViewController : UIViewController
 
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) IBOutlet SJBarGraphView *barView;
+@property (strong, nonatomic) IBOutlet SJPieGraphView *pieView;
 
 @end
 

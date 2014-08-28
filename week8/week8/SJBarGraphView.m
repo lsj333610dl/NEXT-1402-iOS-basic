@@ -8,10 +8,14 @@
 
 #import "SJBarGraphView.h"
 
-NSUInteger maxValue;
-NSArray *datas;
 
 @implementation SJBarGraphView
+
+
+- (void)awakeFromNib{
+    datas = nil;
+    maxValue = 0;
+}
 
 - (void)initWithArray:(NSArray*)array{
     datas = array;
