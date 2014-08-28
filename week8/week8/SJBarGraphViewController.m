@@ -28,11 +28,9 @@
     
     
     //barGraph초기화.
-//    SJBarGraphView *barGraphView = [SJBarGraphView new];
     [_barGraphView initWithArray:jsonObject];
-//    [barGraphView setBackgroundColor:[UIColor whiteColor]];
-//    [barGraphView setFrame:CGRectMake(0, 0, 320, 568-50)];
     
+    [_scrollView setContentSize:_barGraphView.frame.size];
     
 }
 

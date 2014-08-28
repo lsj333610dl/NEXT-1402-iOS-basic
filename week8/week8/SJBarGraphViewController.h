@@ -12,5 +12,6 @@
 @interface SJBarGraphViewController : UIViewController
 
 @property (strong, nonatomic) IBOutlet SJBarGraphView *barGraphView;
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @end
