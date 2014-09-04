@@ -21,6 +21,7 @@
 		1FBE07DE19B58E2B006EA046 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FBE07C019B58E2A006EA046 /* UIKit.framework */; };
 		1FBE07E619B58E2B006EA046 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1FBE07E419B58E2B006EA046 /* InfoPlist.strings */; };
 		1FBE07E819B58E2B006EA046 /* week9Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FBE07E719B58E2B006EA046 /* week9Tests.m */; };
+		1FBE083619B83FF4006EA046 /* bookfile.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1FBE083519B83FF4006EA046 /* bookfile.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		1FBE07E319B58E2B006EA046 /* week9Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "week9Tests-Info.plist"; sourceTree = "<group>"; };
 		1FBE07E519B58E2B006EA046 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1FBE07E719B58E2B006EA046 /* week9Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = week9Tests.m; sourceTree = "<group>"; };
+		1FBE083519B83FF4006EA046 /* bookfile.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bookfile.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 		1FBE07C219B58E2A006EA046 /* week9 */ = {
 			isa = PBXGroup;
 			children = (
+				1FBE083519B83FF4006EA046 /* bookfile.txt */,
 				1FBE07CB19B58E2A006EA046 /* SJAppDelegate.h */,
 				1FBE07CC19B58E2A006EA046 /* SJAppDelegate.m */,
 				1FBE07CE19B58E2A006EA046 /* Main.storyboard */,
@@ -230,6 +233,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1FBE07D519B58E2B006EA046 /* Images.xcassets in Resources */,
+				1FBE083619B83FF4006EA046 /* bookfile.txt in Resources */,
 				1FBE07C719B58E2A006EA046 /* InfoPlist.strings in Resources */,
 				1FBE07D019B58E2B006EA046 /* Main.storyboard in Resources */,
 			);
@@ -457,6 +461,7 @@
 				1FBE07ED19B58E2B006EA046 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1FBE07EE19B58E2B006EA046 /* Build configuration list for PBXNativeTarget "week9Tests" */ = {
 			isa = XCConfigurationList;
@@ -465,6 +470,7 @@
 				1FBE07F019B58E2B006EA046 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

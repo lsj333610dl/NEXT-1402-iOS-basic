@@ -18,7 +18,14 @@
 {
     [super viewDidLoad];
     
-    NSLog(@"%zd",[self countOfSubstring:@" " atContents:@"일 이이 삼삼삼 사사사사 오오오오오"]);
+    NSString *filepath = [[NSBundle mainBundle] pathForResource:@"bookfile" ofType:@"txt"];
+    NSError *error;
+    NSString *fileContents = [NSString stringWithContentsOfFile:filepath encoding:NSUTF8StringEncoding error:&error];
+    
+    if (error)
+        NSLog(@"Error reading file: %@", error.localizedDescription);
+    
+    NSLog(@"%zd",[self countOfSubstring:@"자본주의" atContents:fileContents]);
 }
 
 
@@ -34,11 +41,19 @@
     range.length=[string length];
     
     for (int i=0; i<[contents length]; i+=range.length) {
+        
+        if (contents.length<(range.location+range.length)) {
+            NSLog(@"%zd,%zd",contents.length,range.location+range.length);
+            continue;
+        }
+        
+        
         subString = [contents substringWithRange:range];
         
         if ([subString isEqualToString:string]) {
             count++;
         }
+        
         range.location += range.length;
         
     }
