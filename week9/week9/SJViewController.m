@@ -34,28 +34,30 @@
 -(NSUInteger)countOfSubstring:(NSString*)string atContents:(NSString*)contents{
     
     NSRange range;
+    
     NSUInteger count=0;
-    NSString *subString;
+    
+    NSString *subString = nil;
     
     range.location=0;
     range.length=[string length];
     
-    for (int i=0; i<[contents length]; i+=range.length) {
+    for (int i=0; i<contents.length; i++) {
         
         if (contents.length<(range.location+range.length)) {
             NSLog(@"%zd,%zd",contents.length,range.location+range.length);
             continue;
         }
         
-        
         subString = [contents substringWithRange:range];
+        
+//        NSLog(@"%@",subString);
         
         if ([subString isEqualToString:string]) {
             count++;
         }
         
-        range.location += range.length;
-        
+        range.location += 1;
     }
     
     
