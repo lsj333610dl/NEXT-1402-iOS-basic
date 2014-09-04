@@ -66,34 +66,41 @@
 
 - (void)counting:(NSArray *)array fileContents:(NSString *)fileContents{
 
+    dispatch_group_t group = dispatch_group_create();
+
     NSMutableDictionary *resultDict = [NSMutableDictionary new];
 
-
-
-
     for (NSString *string in array) {
-        resultDict[string] = @([self countOfSubstring:string atContents:fileContents]);
+        dispatch_group_async(group,dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^ {
+            NSLog(@"Block1");
+            resultDict[string] = @([self countOfSubstring:string atContents:fileContents]);
+            NSLog(@"Block1 End");
+        });
     }
 
-    NSArray *orderedKeys = [resultDict keysSortedByValueUsingComparator:^NSComparisonResult(id obj1, id obj2){
-        return [obj1 compare:obj2];
-    }];
+    dispatch_group_notify(group,dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^ {
+        // block3
+        NSLog(@"Block2");
+        NSArray *orderedKeys = [resultDict keysSortedByValueUsingComparator:^NSComparisonResult(id obj1, id obj2){
+            return [obj1 compare:obj2];
+        }];
 
-    NSString *title = [NSString stringWithFormat:@"가장 많은거 : %@\n 가장 적은거 : %@",orderedKeys[orderedKeys.count-1],orderedKeys[0] ];
+        NSString *title = [NSString stringWithFormat:@"가장 많은거 : %@\n가장 적은거 : %@",orderedKeys[orderedKeys.count-1],orderedKeys[0] ];
 
-    NSString *message = [NSString stringWithFormat:@"전체 단어수 : %zd",[[fileContents componentsSeparatedByString:@" "] count]];
+        NSString *message = [NSString stringWithFormat:@"전체 단어수 : %zd",[[fileContents componentsSeparatedByString:@" "] count]];
 
 
-    dispatch_queue_t mainQueue = dispatch_get_main_queue();
-    dispatch_async(mainQueue, ^{
-        NSLog(@"%@",message);
-        _progressView.hidden = YES;
-        UIAlertView *alertView =  [[UIAlertView alloc]initWithTitle:title
-                                                            message:message
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"확인"
-                                                  otherButtonTitles:nil];
-        [alertView show];
+        dispatch_queue_t mainQueue = dispatch_get_main_queue();
+        dispatch_async(mainQueue, ^{
+            NSLog(@"%@",message);
+            _progressView.hidden = YES;
+            UIAlertView *alertView =  [[UIAlertView alloc]initWithTitle:title
+                                                                message:message
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"확인"
+                                                      otherButtonTitles:nil];
+            [alertView show];
+        });
     });
 }
 
