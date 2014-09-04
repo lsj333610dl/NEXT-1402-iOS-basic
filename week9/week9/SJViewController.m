@@ -23,7 +23,7 @@
 
 - (IBAction)start:(id)sender {
     NSLog(@"시작");
-
+    _progressView.hidden = NO;
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"bookfile" ofType:@"txt"];
     NSError *error;
     NSString *fileContents = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
@@ -87,6 +87,7 @@
     dispatch_queue_t mainQueue = dispatch_get_main_queue();
     dispatch_async(mainQueue, ^{
         NSLog(@"%@",message);
+        _progressView.hidden = YES;
         UIAlertView *alertView =  [[UIAlertView alloc]initWithTitle:title
                                                             message:message
                                                            delegate:nil

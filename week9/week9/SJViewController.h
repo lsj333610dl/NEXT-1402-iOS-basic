@@ -10,4 +10,6 @@
 
 @interface SJViewController : UIViewController
 
+@property (strong, nonatomic) IBOutlet UIView *progressView;
+
 @end
