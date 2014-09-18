@@ -16,6 +16,8 @@
 		1F43FE8A19CB0CB9003A577D /* week11Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F43FE8919CB0CB9003A577D /* week11Tests.m */; };
 		1F43FE9419CB0D30003A577D /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F43FE9319CB0D30003A577D /* libsqlite3.dylib */; };
 		1F43FE9719CB1224003A577D /* top25.db in Resources */ = {isa = PBXBuildFile; fileRef = 1F43FE9619CB1224003A577D /* top25.db */; };
+		1F43FE9A19CB1673003A577D /* XMLParserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F43FE9919CB1673003A577D /* XMLParserViewController.m */; };
+		1F43FE9C19CB1742003A577D /* nesfeed.db in Resources */ = {isa = PBXBuildFile; fileRef = 1F43FE9B19CB1742003A577D /* nesfeed.db */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,9 @@
 		1F43FE8919CB0CB9003A577D /* week11Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = week11Tests.m; sourceTree = "<group>"; };
 		1F43FE9319CB0D30003A577D /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		1F43FE9619CB1224003A577D /* top25.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = top25.db; sourceTree = "<group>"; };
+		1F43FE9819CB1673003A577D /* XMLParserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParserViewController.h; sourceTree = "<group>"; };
+		1F43FE9919CB1673003A577D /* XMLParserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParserViewController.m; sourceTree = "<group>"; };
+		1F43FE9B19CB1742003A577D /* nesfeed.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = nesfeed.db; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,10 +93,13 @@
 			isa = PBXGroup;
 			children = (
 				1F43FE9619CB1224003A577D /* top25.db */,
+				1F43FE9B19CB1742003A577D /* nesfeed.db */,
 				1F43FE7119CB0CB9003A577D /* AppDelegate.h */,
 				1F43FE7219CB0CB9003A577D /* AppDelegate.m */,
 				1F43FE7419CB0CB9003A577D /* ViewController.h */,
 				1F43FE7519CB0CB9003A577D /* ViewController.m */,
+				1F43FE9819CB1673003A577D /* XMLParserViewController.h */,
+				1F43FE9919CB1673003A577D /* XMLParserViewController.m */,
 				1F43FE7719CB0CB9003A577D /* Main.storyboard */,
 				1F43FE7A19CB0CB9003A577D /* Images.xcassets */,
 				1F43FE7C19CB0CB9003A577D /* LaunchScreen.xib */,
@@ -206,6 +214,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F43FE9C19CB1742003A577D /* nesfeed.db in Resources */,
 				1F43FE7919CB0CB9003A577D /* Main.storyboard in Resources */,
 				1F43FE7E19CB0CB9003A577D /* LaunchScreen.xib in Resources */,
 				1F43FE9719CB1224003A577D /* top25.db in Resources */,
@@ -228,6 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F43FE7619CB0CB9003A577D /* ViewController.m in Sources */,
+				1F43FE9A19CB1673003A577D /* XMLParserViewController.m in Sources */,
 				1F43FE7319CB0CB9003A577D /* AppDelegate.m in Sources */,
 				1F43FE7019CB0CB9003A577D /* main.m in Sources */,
 			);
