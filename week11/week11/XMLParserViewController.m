@@ -7,11 +7,13 @@
 //
 
 #import "XMLParserViewController.h"
+#import <sqlite3.h>
 
 @interface XMLParserViewController (){
-    NSString *tagName,*tagNameInItem;
-    NSMutableArray *itemsArray;
+    NSString *tagName,*tagNameInItem,*dbPath;
+    NSMutableArray *itemsArray,*resultArray;
     NSMutableDictionary *itemDict;
+    sqlite3 *db;
 }
 
 @end
@@ -19,25 +21,100 @@
 @implementation XMLParserViewController
 
 - (void)viewDidLoad {
+    
+    resultArray = [NSMutableArray new];
+    
     [super viewDidLoad];
     
-    itemsArray = [NSMutableArray new];
-    itemDict = [NSMutableDictionary new];
+    [self dbPath];
     
-    NSURL *url = [NSURL URLWithString:@"http://images.apple.com/main/rss/hotnews/hotnews.rss"];
-    NSXMLParser *myParser = [[NSXMLParser alloc] initWithContentsOfURL:url];
-    [myParser setDelegate:self];
-    [myParser parse];
+    [self loadFromDB];
+    
 }
 
+-(NSString *)dbPath
+{
+    if(!dbPath)
+    {
+        NSFileManager *fileman = [NSFileManager defaultManager];
+        NSURL *documentPathURL = [[fileman URLsForDirectory:NSDocumentDirectory
+                                                  inDomains:NSUserDomainMask] lastObject];
+        
+        NSString *databaseFilename = @"newsfeed.db";
+        
+        dbPath = [[documentPathURL URLByAppendingPathComponent:databaseFilename] path];
+        
+        if(![fileman fileExistsAtPath:dbPath])
+        {
+            NSString *dbSource = [[NSBundle mainBundle] pathForResource:@"newsfeed" ofType:@"db"];
+            [fileman copyItemAtPath:dbSource toPath:dbPath error:nil];
+            if (!resultArray.count) {
+                itemsArray = [NSMutableArray new];
+                itemDict = [NSMutableDictionary new];
+                
+                
+                NSURL *url = [NSURL URLWithString:@"http://images.apple.com/main/rss/hotnews/hotnews.rss"];
+                NSXMLParser *myParser = [[NSXMLParser alloc] initWithContentsOfURL:url];
+                [myParser setDelegate:self];
+                [myParser parse];
+            }
+        }
+    }
+    return dbPath;
+}
 
+-(NSInteger)loadFromDB{
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    if ([fileManager fileExistsAtPath:dbPath] == YES) {
+        sqlite3_stmt *statement;
+        const char *dbPathInChar = [dbPath UTF8String];
+        if (sqlite3_open(dbPathInChar, &db) == SQLITE_OK) {
+            NSMutableArray *colNames = [[NSMutableArray alloc] init];
+            const char *queryInChar = [@"SELECT * FROM tbl_newsfeed" UTF8String];
+            const char *queryForColumnNames = [@"PRAGMA TABLE_INFO('tbl_newsfeed')" UTF8String];
+            if (sqlite3_prepare_v2(db, queryForColumnNames, -1, &statement, NULL) == SQLITE_OK) {
+                while (sqlite3_step(statement) == SQLITE_ROW) {
+                    NSString *colName = [[NSString alloc] initWithUTF8String:(const char*) sqlite3_column_text(statement, 1)];
+                    [colNames addObject:colName];
+                }
+            }
+            
+            sqlite3_reset(statement);
+            if (sqlite3_prepare_v2(db, queryInChar, -1, &statement, NULL) == SQLITE_OK) {
+                
+                while (sqlite3_step(statement) == SQLITE_ROW) {
+                    NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
+                    for (int i = 0; i < colNames.count; i++) {
+                        NSString * dataForCol = [[NSString alloc] initWithUTF8String:(const char*) sqlite3_column_text(statement, i)];
+                        [data setObject:dataForCol forKey:[colNames objectAtIndex:i]];
+                    }
+                    [resultArray addObject:data];
+                }
+                sqlite3_finalize(statement);
+            }
+            sqlite3_close(db);
+        }
+        
+    }
+    
+    [_tableView reloadData];
+    NSLog(@"%zd",resultArray.count);
+    return resultArray.count;
+}
 
 
 
 #pragma mark - XMLParserDelegate
 -(void)parserDidEndDocument:(NSXMLParser *)parser{
-    NSLog(@"%zd",itemsArray.count);
-    [_tableView reloadData];
+    for (NSDictionary *dict in itemsArray) {
+        [self insertNewsFeed:dict];
+    }
+    
+    [self loadFromDB];
+    NSLog(@"%zd,%@",resultArray.count,resultArray);
+    
 }
 
 -(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict{
@@ -75,6 +152,31 @@
     
 }
 
+- (void)insertNewsFeed:(NSDictionary*)dict {
+    
+    int dbrc;
+    dbrc=sqlite3_open([dbPath UTF8String], &db);
+    if (dbrc) {
+        NSLog(@"couldn't open db");
+        return;
+    }
+    
+    NSString *title = [dict objectForKey:@"title"];
+    NSString *link = [dict objectForKey:@"link"];
+    NSString *description = [dict objectForKey:@"description"];
+    NSString *pubDate = [dict objectForKey:@"pubDate"];
+    
+    sqlite3_stmt *dbps;
+    NSString *insertSQLString= [NSString stringWithFormat:@"INSERT INTO \"tbl_newsfeed\" (title, link, description, pubDate) VALUES (\"%@\",\"%@\", \"%@\", \"%@\");",title,link,description,pubDate];
+    
+    
+    dbrc = sqlite3_prepare_v2(db, [insertSQLString UTF8String], -1, &dbps, NULL);
+    dbrc = sqlite3_step(dbps);
+    
+    sqlite3_finalize(dbps);
+    sqlite3_close(db);
+    
+}
 
 #pragma mark - TableViewDelegate&DataSource
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -82,22 +184,22 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [itemsArray count];
+    return [resultArray count];
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *CellIdentifier = @"XMLCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    cell.textLabel.text = [[itemsArray objectAtIndex:indexPath.row] objectForKey:@"title"];
-    cell.detailTextLabel.text = [[itemsArray objectAtIndex:indexPath.row] objectForKey:@"pubDate"];
+    cell.textLabel.text = [[resultArray objectAtIndex:indexPath.row] objectForKey:@"title"];
+    cell.detailTextLabel.text = [[resultArray objectAtIndex:indexPath.row] objectForKey:@"pubDate"];
     
     return cell;
     
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSURL *url = [NSURL URLWithString:[[itemsArray objectAtIndex:indexPath.row] objectForKey:@"link"]];
+    NSURL *url = [NSURL URLWithString:[[resultArray objectAtIndex:indexPath.row] objectForKey:@"link"]];
     [[UIApplication sharedApplication]openURL:url];
 }
 
